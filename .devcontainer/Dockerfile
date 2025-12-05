@@ -11,7 +11,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       libapache2-mod-php \
       phpmyadmin \
   && a2enmod rewrite \
-  && a2enmod php8.2 \
   && rm -rf /var/lib/apt/lists/*
 
 # Composer
