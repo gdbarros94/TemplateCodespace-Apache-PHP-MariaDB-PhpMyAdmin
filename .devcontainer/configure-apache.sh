@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
-# ==============================================================================
-# configure-apache.sh - Script modular para configuração do Apache
-# ==============================================================================
-# Este script configura o Apache usando variáveis de ambiente
-# Variáveis esperadas:
-#   - APACHE_DOCUMENT_ROOT
-#   - APACHE_PORT
-#   - APACHE_SERVER_NAME
-#   - APACHE_ALLOW_OVERRIDE
-#   - APACHE_INDEXES
-#   - APACHE_REWRITE
-# ==============================================================================
+# configure-apache.sh - Script modular para configuração do Apache# ======================================================================
+
+#
+# EN: configure-apache.sh - Modular script to configure Apache
+# EN: Expected environment variables:
+# EN:   - APACHE_DOCUMENT_ROOT
+# EN:   - APACHE_PORT
+# EN:   - APACHE_SERVER_NAME
+# EN:   - APACHE_ALLOW_OVERRIDE
+# EN:   - APACHE_INDEXES
+# EN:   - APACHE_REWRITE
+# ======================================================================
 
 set -euo pipefail
 

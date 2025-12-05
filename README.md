@@ -3,40 +3,49 @@
 > Ambiente de desenvolvimento completo e configurável para PHP com Apache, MySQL/MariaDB e phpMyAdmin
 
 [![GitHub Codespaces](https://img.shields.io/badge/Codespaces-Ready-brightgreen?logo=github)](https://github.com/codespaces)
+# Codespace Template — Apache + PHP + MariaDB + phpMyAdmin
+
+This repository is a ready-to-use GitHub Codespaces / devcontainer template that brings up a
+local PHP development environment including Apache, PHP, MariaDB (or MySQL) and phpMyAdmin.
+
+It is intended as a starting point for PHP web projects and makes it easy to reproduce a
+consistent dev environment across machines.
+
+Badges:
+
+[![GitHub Codespaces](https://img.shields.io/badge/Codespaces-Ready-brightgreen?logo=github)](https://github.com/codespaces)
 [![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?logo=php&logoColor=white)](https://www.php.net/)
 [![Apache](https://img.shields.io/badge/Apache-2.4-D22128?logo=apache&logoColor=white)](https://httpd.apache.org/)
 [![MariaDB](https://img.shields.io/badge/MariaDB-10.11-003545?logo=mariadb&logoColor=white)](https://mariadb.org/)
 
-## ✨ Características
+Key features
 
-- 🎯 **Configuração via `.env`** - Controle total sobre o ambiente
-- 🔧 **Arquitetura modular** - Scripts independentes para cada serviço
-- 🗄️ **MySQL/MariaDB** - Banco de dados com usuários e permissões personalizáveis
-- 🌐 **Apache** - Servidor web com DocumentRoot configurável
-- 🐘 **PHP 8.2** - Com extensões comuns pré-instaladas
-- 📊 **phpMyAdmin** - Interface web para gerenciar bancos de dados
-- ⚡ **Reload sem rebuild** - Aplique mudanças sem reconstruir o container
-- 📝 **Logs coloridos** - Feedback visual durante configuração
-- 🛠️ **Extensível** - Suporte opcional para Xdebug e Node.js
+- Configurable via `.devcontainer/.env` (copy from `.env.example`)
+- Modular scripts in `.devcontainer/` to configure Apache, PHP, MariaDB and phpMyAdmin
+- Reload configuration without rebuilding the container using `reload-services.sh`
+- Optional Xdebug / Node.js installation via `.env` flags
 
-## 🚀 Início Rápido
+Quick start
 
-### 1. Criar `.env` a partir do template
+1. Copy the example environment file:
 
 ```bash
 cp .devcontainer/.env.example .devcontainer/.env
 ```
 
-### 2. Personalizar configurações (opcional)
+2. Edit `.devcontainer/.env` to set passwords, database name, document root and other options.
 
-Edite `.devcontainer/.env` conforme necessário:
+3. Open the repository in GitHub Codespaces or build the devcontainer locally — the `init.sh`
+	script runs automatically to configure services.
+
+Important `.env` variables (examples)
 
 ```env
-# MySQL
-MYSQL_ROOT_PASSWORD=sua_senha_root
-MYSQL_DATABASE=seu_banco
-MYSQL_USER=seu_usuario
-MYSQL_PASSWORD=sua_senha
+# Database
+MYSQL_ROOT_PASSWORD=change_me
+MYSQL_DATABASE=app_database
+MYSQL_USER=app_user
+MYSQL_PASSWORD=change_me
 
 # Apache
 APACHE_DOCUMENT_ROOT=public
@@ -45,219 +54,105 @@ APACHE_PORT=80
 # PHP
 PHP_MEMORY_LIMIT=256M
 PHP_UPLOAD_MAX_FILESIZE=64M
+
+# Optional
+INSTALL_XDEBUG=false
+INSTALL_NODEJS=false
 ```
 
-### 3. Iniciar Codespace
+Notes
 
-No GitHub: **Code** → **Codespaces** → **Create codespace**
+- Never commit secrets to the repository. Keep `.devcontainer/.env` out of version control.
+- `PHPMYADMIN_BLOWFISH_SECRET` should be at least 32 characters for phpMyAdmin cookie security.
 
-O ambiente será configurado automaticamente! 🎉
+Using the template in another project
 
-### 4. Acessar serviços
+1. Copy the `.devcontainer/` directory into your project root.
+2. Adjust `APACHE_DOCUMENT_ROOT` to point to your app's public folder (for example `www/public`).
+3. Adjust `devcontainer.json` port forwards if you change default ports.
 
-- **Aplicação**: `http://localhost:80`
-- **phpMyAdmin**: `http://localhost:80/phpmyadmin`
-- **MySQL**: `localhost:3306`
+Starting, stopping and reloading services
 
-## 📋 Configurações Disponíveis
-
-### MySQL/MariaDB
-
-```env
-MYSQL_ROOT_PASSWORD=root          # Senha do root
-MYSQL_DATABASE=devdb              # Nome do banco
-MYSQL_USER=devuser                # Usuário do banco
-MYSQL_PASSWORD=devpass            # Senha do usuário
-MYSQL_HOST=127.0.0.1              # Host
-MYSQL_PORT=3306                   # Porta
-MYSQL_CHARSET=utf8mb4             # Charset
-MYSQL_COLLATION=utf8mb4_unicode_ci # Collation
-```
-
-### Apache
-
-```env
-APACHE_DOCUMENT_ROOT=public       # Pasta raiz (relativa ou absoluta)
-APACHE_PORT=80                    # Porta do servidor
-APACHE_SERVER_NAME=localhost      # Nome do servidor
-APACHE_ALLOW_OVERRIDE=true        # Habilitar .htaccess
-APACHE_INDEXES=true               # Listagem de diretórios
-APACHE_REWRITE=true               # mod_rewrite
-```
-
-### PHP
-
-```env
-PHP_DISPLAY_ERRORS=On             # Exibir erros
-PHP_ERROR_REPORTING=E_ALL         # Nível de erro
-PHP_UPLOAD_MAX_FILESIZE=64M       # Upload máximo
-PHP_POST_MAX_SIZE=64M             # POST máximo
-PHP_MEMORY_LIMIT=256M             # Limite de memória
-PHP_MAX_EXECUTION_TIME=300        # Tempo de execução
-```
-
-### Ferramentas de Desenvolvimento
-
-```env
-INSTALL_XDEBUG=false              # Instalar Xdebug
-INSTALL_NODEJS=false              # Instalar Node.js
-NODEJS_VERSION=20                 # Versão do Node.js
-TZ=America/Sao_Paulo              # Timezone
-```
-
-## 🔄 Aplicar Mudanças no `.env`
-
-Após editar o `.env`, aplique as mudanças sem rebuild:
+Reload configuration without rebuild:
 
 ```bash
 bash .devcontainer/reload-services.sh
 ```
 
-## 📁 Estrutura do Projeto
-
-```
-.
-├── .devcontainer/
-│   ├── .env.example              # Template de configuração
-│   ├── .env                      # Suas configurações (git-ignored)
-│   ├── Dockerfile                # Imagem Docker
-│   ├── devcontainer.json         # Config do devcontainer
-│   ├── init.sh                   # Script de inicialização
-│   ├── reload-services.sh        # Reload sem rebuild
-│   ├── configure-mysql.sh        # Configuração MySQL
-│   ├── configure-apache.sh       # Configuração Apache
-│   ├── configure-php.sh          # Configuração PHP
-│   ├── configure-phpmyadmin.sh   # Configuração phpMyAdmin
-│   ├── CONFIGURATION.md          # Documentação completa
-│   └── docs.md                   # Documentação original
-├── public/                       # DocumentRoot padrão (será criado)
-│   └── index.php                 # Arquivo de exemplo
-└── README.md                     # Este arquivo
-```
-
-## 💡 Casos de Uso
-
-### Alterar DocumentRoot
-
-```env
-# .devcontainer/.env
-APACHE_DOCUMENT_ROOT=www/public
-```
+Restart services manually inside the container:
 
 ```bash
+sudo service apache2 restart
+sudo service mariadb restart
+```
+
+Check status:
+
+```bash
+sudo service apache2 status
+sudo service mariadb status
+```
+
+Accessing services
+
+- Application: `http://localhost:<APACHE_PORT>` (default `80`)
+- phpMyAdmin: `http://localhost:<APACHE_PORT>/phpmyadmin`
+- MySQL: `localhost:3306` (use credentials from `.devcontainer/.env`)
+
+Troubleshooting
+
+- Apache errors: `sudo tail -f /var/log/apache2/error.log`
+- MySQL errors: `sudo tail -f /var/log/mysql/error.log` or `sudo journalctl -u mariadb`
+- Test Apache configuration: `apache2ctl configtest`
+
+If MySQL access is denied, re-check credentials in `.env` and run the configure script:
+
+```bash
+bash .devcontainer/configure-mysql.sh
+```
+
+Collaboration and contributions
+
+- Keep `.devcontainer/.env.example` generic and free of secrets.
+- Document changes to initialization scripts inside `.devcontainer/CONFIGURATION.md`.
+- Make optional features opt-in via `.env` flags and document them.
+- Contributions via issues and pull requests are welcome.
+
+Example commands
+
+```bash
+# create .env from example
+cp .devcontainer/.env.example .devcontainer/.env
+
+# edit .env
+nano .devcontainer/.env
+
+# reload services
 bash .devcontainer/reload-services.sh
+
+# view logs
+sudo tail -f /var/log/apache2/error.log
 ```
 
-### Aumentar Limite de Upload
+License
 
-```env
-# .devcontainer/.env
-PHP_UPLOAD_MAX_FILESIZE=256M
-PHP_POST_MAX_SIZE=256M
-```
-
-```bash
-bash .devcontainer/reload-services.sh
-```
-
-### Habilitar Xdebug
-
-```env
-# .devcontainer/.env
-INSTALL_XDEBUG=true
-```
-
-⚠️ **Requer rebuild** do container
-
-### Criar Múltiplos Bancos
-
-```bash
-mysql -u root -p${MYSQL_ROOT_PASSWORD}
-```
-
-```sql
-CREATE DATABASE segundo_banco CHARACTER SET utf8mb4;
-GRANT ALL PRIVILEGES ON segundo_banco.* TO 'seu_usuario'@'localhost';
-```
-
-## 🛠️ Scripts Modulares
-
-| Script | Descrição |
-|--------|-----------|
-| `init.sh` | Inicialização completa do ambiente |
-| `configure-mysql.sh` | Configura MySQL/MariaDB |
-| `configure-apache.sh` | Configura Apache |
-| `configure-php.sh` | Configura PHP |
-| `configure-phpmyadmin.sh` | Configura phpMyAdmin |
-| `reload-services.sh` | Reaplica configurações e reinicia serviços |
-
-Todos os scripts podem ser executados individualmente:
-
-```bash
-configure-mysql.sh
-configure-apache.sh /workspaces/seu-repo
-configure-php.sh
-configure-phpmyadmin.sh
-```
-
-## 🐛 Troubleshooting
-
-### Verificar logs
-
-```bash
-# Apache
-tail -f /var/log/apache2/error.log
-
-# MySQL
-tail -f /var/log/mysql/error.log
-
-# PHP
-tail -f /var/log/php_errors.log
-```
-
-### Verificar status dos serviços
-
-```bash
-service apache2 status
-service mariadb status
-```
-
-### Testar configuração do Apache
-
-```bash
-apache2ctl configtest
-```
-
-### Conectar ao MySQL
-
-```bash
-mysql -u root -p${MYSQL_ROOT_PASSWORD}
-mysql -u ${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE}
-```
-
-## 📚 Documentação Completa
-
-Para documentação detalhada, veja:
-- [CONFIGURATION.md](.devcontainer/CONFIGURATION.md) - Guia completo de configuração
-- [docs.md](.devcontainer/docs.md) - Documentação original
-
-## 🎓 Boas Práticas
-
-- ⚠️ **Nunca commite o arquivo `.env`** com senhas reais
-- ✅ Use senhas fortes, especialmente em produção
-- ✅ Desabilite `PHP_DISPLAY_ERRORS` em produção
-- ✅ Configure `PHPMYADMIN_ALLOW_NO_PASSWORD=false`
-- ✅ Ajuste limites de PHP conforme necessário
-- ✅ Use `reload-services.sh` para testar mudanças antes de rebuild
-
-## 🤝 Contribuindo
-
-Sinta-se à vontade para abrir issues e pull requests!
-
-## 📄 Licença
-
-Este template é de código aberto e pode ser usado livremente.
+This template is open-source. Use and modify as needed.
 
 ---
 
-**Desenvolvido com ❤️ para facilitar o desenvolvimento PHP**
+If you want, I can also translate `CONFIGURATION.md` to English or run a final repo-wide check for any remaining Portuguese strings.
+sudo service mariadb restart
+
+# tail logs
+sudo tail -f /var/log/apache2/error.log
+```
+
+## License & Contribution
+
+This template is open-source. Contributions are welcome via issues and pull requests.
+
+---
+
+If you'd like, I can also update other docs or run a repo-wide check for remaining occurrences of the old name.
+
+``` 

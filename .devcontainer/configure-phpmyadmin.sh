@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
-# ==============================================================================
+# ======================================================================
 # configure-phpmyadmin.sh - Script modular para configuração do phpMyAdmin
-# ==============================================================================
+# ======================================================================
 # Este script configura o phpMyAdmin usando variáveis de ambiente
 # Variáveis esperadas:
 #   - PHPMYADMIN_BLOWFISH_SECRET
 #   - PHPMYADMIN_ALLOW_NO_PASSWORD
 #   - MYSQL_HOST
-# ==============================================================================
+#
+# EN: configure-phpmyadmin.sh - Modular script to configure phpMyAdmin
+# EN: Expected environment variables:
+# EN:   - PHPMYADMIN_BLOWFISH_SECRET
+# EN:   - PHPMYADMIN_ALLOW_NO_PASSWORD
+# EN:   - MYSQL_HOST
+# ======================================================================
 
 set -euo pipefail
 

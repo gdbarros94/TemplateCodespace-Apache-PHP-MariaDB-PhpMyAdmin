@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# ==============================================================================
+# ======================================================================
 # configure-php.sh - Script modular para configuração do PHP
-# ==============================================================================
+# ======================================================================
 # Este script configura o PHP usando variáveis de ambiente
 # Variáveis esperadas:
 #   - PHP_DISPLAY_ERRORS
@@ -11,7 +11,17 @@
 #   - PHP_MEMORY_LIMIT
 #   - PHP_MAX_EXECUTION_TIME
 #   - TZ (timezone)
-# ==============================================================================
+#
+# EN: configure-php.sh - Modular script to configure PHP
+# EN: Expected environment variables:
+# EN:   - PHP_DISPLAY_ERRORS
+# EN:   - PHP_ERROR_REPORTING
+# EN:   - PHP_UPLOAD_MAX_FILESIZE
+# EN:   - PHP_POST_MAX_SIZE
+# EN:   - PHP_MEMORY_LIMIT
+# EN:   - PHP_MAX_EXECUTION_TIME
+# EN:   - TZ (timezone)
+# ======================================================================
 
 set -euo pipefail
 

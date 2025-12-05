@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
-# ==============================================================================
+# ======================================================================
 # init.sh - Script principal de inicialização do ambiente de desenvolvimento
-# ==============================================================================
+# ======================================================================
 # Este script orquestra todos os módulos de configuração usando variáveis
 # de ambiente definidas no arquivo .env
-# ==============================================================================
+#
+# EN: init.sh - Main bootstrap script for the development environment
+# EN: This script orchestrates the modular configuration scripts using
+# EN: environment variables defined in `.devcontainer/.env`.
+# ======================================================================
 
 set -euo pipefail
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# ==============================================================================
+# ======================================================================
 # configure-mysql.sh - Script modular para configuração do MySQL/MariaDB
-# ==============================================================================
+# ======================================================================
 # Este script configura o MySQL/MariaDB usando variáveis de ambiente
 # Variáveis esperadas:
 #   - MYSQL_ROOT_PASSWORD
@@ -11,7 +11,17 @@
 #   - MYSQL_HOST
 #   - MYSQL_CHARSET
 #   - MYSQL_COLLATION
-# ==============================================================================
+#
+# EN: configure-mysql.sh - Modular script to configure MySQL/MariaDB
+# EN: Expected environment variables:
+# EN:   - MYSQL_ROOT_PASSWORD
+# EN:   - MYSQL_DATABASE
+# EN:   - MYSQL_USER
+# EN:   - MYSQL_PASSWORD
+# EN:   - MYSQL_HOST
+# EN:   - MYSQL_CHARSET
+# EN:   - MYSQL_COLLATION
+# ======================================================================
 
 set -euo pipefail
 

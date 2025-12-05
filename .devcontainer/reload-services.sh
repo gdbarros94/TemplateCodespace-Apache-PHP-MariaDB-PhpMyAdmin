@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
-# ==============================================================================
+# ======================================================================
 # reload-services.sh - Script para recarregar serviços após mudanças no .env
-# ==============================================================================
+# ======================================================================
 # Este script reaplica todas as configurações dos módulos e reinicia os serviços
 # Use este script quando modificar o arquivo .env e quiser aplicar as mudanças
 # sem reconstruir o container
-# ==============================================================================
+#
+# EN: reload-services.sh - Reapply module configurations and restart services
+# EN: Run this after editing `.devcontainer/.env` to apply changes without
+# EN: rebuilding the devcontainer image.
+# ======================================================================
 
 set -euo pipefail
 
